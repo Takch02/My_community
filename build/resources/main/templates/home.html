@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>같이가치</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1><a href="home" id="homeLink">같이가치</a></h1>
+<a href="trending/today" class="trend-link">today trending</a>
+<a href="trending/week" class="trend-link">week trending</a>
+<a href="trending/month" class="trend-link">month trending</a>
+
+<div th:if="${isAuth}">
+    <h3 th:text="|환영합니다. ${user.getUsername()}님.|"></h3>
+</div>
+
+<div th:if="${!isAuth}">
+    <button id="loginBtn">로그인</button>
+</div>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <h2>로그인</h2>
+        <!-- 글로벌 오류 메시지 -->
+        <span th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error"></span>
+        <form th:action="@{/home}" th:object="${loginForm}" method="post">
+            <span th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error"></span>
+            <div>
+                <input type="text" th:field="*{username}" placeholder="아이디">
+                <span th:errors="*{username}" class="error"></span>
+            </div>
+            <div>
+                <input type="password" th:field="*{password}" placeholder="비밀번호">
+                <span th:errors="*{password}" class="error"></span>
+            </div>
+            <input type="submit" id="submitBtn" value="Login">
+        </form>
+        <form action="/create" method="get">
+            <input type="submit" id="createBtn" value="회원가입">
+        </form>
+        <button type="button" id="closeBtn">닫기</button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
