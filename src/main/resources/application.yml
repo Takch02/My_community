@@ -8,3 +8,4 @@ spring :
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: clonecoding.velog_clone.dto
+

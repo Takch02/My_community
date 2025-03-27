@@ -34,6 +34,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         User user = (User) request.getSession().getAttribute("user");
+        log.info("user: [{}]", user);
 
         if (user != null && modelAndView != null) {
             modelAndView.addObject("user", user);

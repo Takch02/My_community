@@ -41,7 +41,7 @@ h1 a:hover {
 }
 
 /* 버튼 공통 스타일 */
-.trend-link, #loginBtn, #submitBtn, #createBtn {
+.trend-link, #submitBtn, #createBtn, #closeBtn {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 20px;
@@ -72,7 +72,13 @@ h1 a:hover {
     width: 100%;
 }
 
+#closeBtn {
+    background-color: orangered;
+    color: white;
+    width: 100%;
+}
 /* 로그인 모달 */
+
 .modal {
     display: none;
     position: fixed;
@@ -93,12 +99,50 @@ h1 a:hover {
     text-align: center;
 }
 
-#closeBtn {
-    background-color: orangered;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
+
+
+.post-container {
+    max-width: 800px; /* 콘텐츠 폭 제한 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px;
+    background-color: #fff; /* 배경색 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+}
+.post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.2;
+}
+.post-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #6c757d;
+}
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+.post-author {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 20px;
+}
+
+.welcome-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 2rem;
+}
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 /* 반응형 스타일 */

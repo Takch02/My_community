@@ -16,14 +16,17 @@
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="fw-bold">
-      <a href="home" id="homeLink" class="text-dark text-decoration-none">같이가치</a>
+      <a th:href="@{/home}" id="homeLink" class="text-dark text-decoration-none">같이가치</a>
     </h1>
 
     <div class="d-flex align-items-center gap-3">
-      <a th:if="${isAuth}" th:href="@{/write}" class="btn btn-success">새 글쓰기</a>
       <a th:href="@{/search}" class="text-dark">
         <i class="fas fa-search fs-4"></i>
       </a>
+      <a th:if="${isAuth}" th:href="@{/write}" class="btn btn-success">새 글쓰기</a>
+      <form th:if="${isAuth}" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-danger">로그아웃</button>
+      </form>
       <a th:if="${user != null}" th:href="@{/userinfo/{username}(username=${user.getUsername()})}" class="text-dark fw-bold">
         <span th:text="|${user.getUsername()}님|"></span>
       </a>
@@ -35,14 +38,24 @@
     <div class="mb-3">
       <label for="title" class="form-label">글 제목</label>
       <input type="text" class="form-control" th:field="*{title}" id="title" placeholder="제목을 입력하세요" required>
+      <div th:errors="*{title}" class="text-danger"></div>
+    </div>
+
+    <div class="mb-3">
+      <label for="subtitle" class="form-label">부제목</label>
+      <input type="text" class="form-control" th:field="*{subtitle}" id="subtitle" placeholder="부제목을 입력하세요" required>
+      <div th:errors="*{subtitle}" class="text-danger"></div>
     </div>
 
     <div class="mb-3">
       <label for="content" class="form-label">글 내용</label>
       <textarea class="form-control" th:field="*{content}" id="content" rows="5" placeholder="내용을 입력하세요" required></textarea>
+      <div th:errors="*{content}" class="text-danger"></div>
     </div>
 
-    <button type="submit" class="btn btn-success">글 작성</button>
+    <div class="text-end">
+      <button type="submit" class="btn btn-success">글 작성</button>
+    </div>
   </form>
 </div>
 

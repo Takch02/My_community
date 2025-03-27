@@ -16,7 +16,7 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(min = 6, max = 12, message = "비밀번호는 6 ~ 12자 사이로 해주세요.")
+    @Size(min = 6, max = 15, message = "비밀번호는 6 ~ 15자 사이로 해주세요.")
     private String password;
 
     @Size(min = 15, max = 30, message = "이메일은 15 ~ 30자 사이로 해주세요.")

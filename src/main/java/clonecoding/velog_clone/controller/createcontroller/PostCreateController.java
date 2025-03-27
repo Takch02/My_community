@@ -1,15 +1,24 @@
 package clonecoding.velog_clone.controller.createcontroller;
 
 import clonecoding.velog_clone.dto.User;
-import clonecoding.velog_clone.dto.post.Post;
+import clonecoding.velog_clone.dto.Post;
+import clonecoding.velog_clone.service.PostService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
 public class PostCreateController {
+
+    private final PostService postService;
 
     @GetMapping("/write")
     public String create(HttpSession session, Model model) {
@@ -25,8 +34,16 @@ public class PostCreateController {
     }
 
     @PostMapping("/write")
-    public String createPost(HttpSession session, Model model) {
+    public String createPost(@Valid Post post, BindingResult result, HttpSession session) {
 
-        return "home";
+        if (result.hasErrors()) {
+            return "post/create_post";
+        }
+        User user = (User) session.getAttribute("user");
+        post.setUserid(user.getId());
+        post.setUsername(user.getUsername());
+        postService.insertPost(post);
+
+        return "redirect:/home";
     }
 }
