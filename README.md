@@ -46,3 +46,7 @@ post table을 만들고 글쓰기 로직을 만듦. 로그인 하지 않아도 p
 ### 3/28
 
 글 수정 기능 및 modal 기능, loginForm, header를 리펙토링했습니다.
+
+### 3/29
+
+CloudType에 mysql 서버를 열었습니다. 글 수정, 삭제 기능 및 유저 수정기능 까지 넣은 후 spring boot 서버도 올릴 예정입니다.
