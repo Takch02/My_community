@@ -1,5 +1,7 @@
 # 커뮤니티 만들기
 
+![Image](https://github.com/user-attachments/assets/daca5fca-6954-4f8e-a960-5b3d9f16ee80)
+
 전혀 비슷하지 않지만 제가 원하는 방향으로 커뮤니티를 만들어보고 있습니다.
 (아직 진행중입니다. 3/25 ~ )
 
