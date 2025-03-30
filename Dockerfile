@@ -7,6 +7,7 @@ COPY build.gradle gradlew settings.gradle ./
 COPY gradle ./gradle
 
 # 3. 의존성 다운로드 (캐싱 활용)
+RUN chmod +x gradlew
 RUN ./gradlew dependencies
 
 # 4. 소스 코드 복사 및 빌드
