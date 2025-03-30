@@ -19,16 +19,17 @@
 <div class="container mt-5">
     <div class="post-container" th:object="${post}">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="post-title" th:text="${post.title}"></h1>
-            <div th:if="${update_auth}" class="action-buttons">
-                <form th:action="@{/update}" method="post">
-                    <input type="hidden" th:value="${update_auth}" name="auth">
-                    <input type="hidden" th:value="${post.title}" name="title">
-                    <button type="submit" class="text-muted bg-transparent border-0 p-0">수정</button>
-                </form>
-                <button class="text-muted bg-transparent border-0 p-0" data-bs-toggle="modal" data-bs-target="#postModalId">삭제</button>
-            </div>
+        <h1 class="post-title" th:text="${post.title}"></h1>
+        <div th:if="${update_auth}" class="action-buttons d-flex gap-2">
+            <form th:action="@{/update}" method="post" class="d-inline">
+                <input type="hidden" th:value="${update_auth}" name="auth">
+                <input type="hidden" th:value="${post.title}" name="title">
+                <button type="submit" class="text-muted bg-transparent border-0 p-0">수정</button>
+            </form>
+            <button class="text-muted bg-transparent border-0 p-0" data-bs-toggle="modal" data-bs-target="#postModalId">삭제</button>
         </div>
+    </div>
+
 
         <div id="postModalId" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
