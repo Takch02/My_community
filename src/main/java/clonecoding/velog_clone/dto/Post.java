@@ -8,7 +8,7 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-@Alias("Post")
+
 @Setter
 @Getter
 public class Post {
