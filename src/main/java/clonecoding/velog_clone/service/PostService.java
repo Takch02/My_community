@@ -19,7 +19,7 @@ public class PostService {
     }
 
     public List<Post> getPostByName(String username) {
-        return postMapper.selectPostById(username);
+        return postMapper.selectPostByUsername(username);
     }
 
     public List<Post> getAllPosts() {
@@ -30,9 +30,11 @@ public class PostService {
         return postMapper.selectPostByTitle(title);
     }
 
-    public void updatePost(Post post) {
-        postMapper.updatePost(post);
+    public int updatePost(Post post) {
+        return postMapper.updatePost(post);
     }
+
+    public Post selectPostById(int id) {return postMapper.selectPostById(id);}
 
     public void deletePost(int id) {
         postMapper.deletePost(id);

@@ -21,21 +21,26 @@
   <h1 class="welcome-header" th:text="|${user.getUsername()} 님|"></h1>
 
   <!-- 게시글 섹션 -->
-  <h3 class="section-title">글 목록</h3> <br/>
+  <h3 class="section-title">글 목록</h3>
 
-  <div class="row row-cols-1 row-cols-md-4 g-4">
-    <div class="col" th:each="post : ${posts}">
-      <a th:href="@{/post/{title}(title=${post.getTitle()})}" class="text-decoration-none text-dark">
-        <div class="card h-100">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold" th:text="${#strings.abbreviate(post.getTitle(), 16)}"></h5>
-            <p class="card-text flex-grow-1" th:text="${#strings.abbreviate(post.getSubtitle(), 26)}"></p>
-            <p class="card-text mt-auto">
-              <small class="text-muted" th:text="${post.getUsername()}"></small>
-            </p>
+  <div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" th:each="post : ${posts}">
+        <a th:href="@{/post/{id}(id=${post.getTitle()})}" class="text-decoration-none text-dark">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold" th:text="${#strings.abbreviate(post.title, 16)}"></h5>
+              <p class="card-text flex-grow-1" th:text="${#strings.abbreviate(post.subtitle, 26)}"></p>
+
+              <!-- 작성자와 작성 시간 같은 줄에 배치 -->
+              <div class="d-flex justify-content-between mt-auto">
+                <span class="text-muted fs-8" th:text="${post.username}"></span>
+                <span class="text-muted fs-8" th:text="${#temporals.format(post.created_at, 'yyyy-MM-dd HH:mm')}"></span>
+              </div>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
   </div>
 </div>

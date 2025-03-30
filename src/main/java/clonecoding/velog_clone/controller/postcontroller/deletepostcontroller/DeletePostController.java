@@ -19,7 +19,7 @@ public class DeletePostController {
         if (auth) {
             postService.deletePost(id);
         } else {
-            return "error/404";
+            return "error/400";
         }
         return "redirect:/home";
     }

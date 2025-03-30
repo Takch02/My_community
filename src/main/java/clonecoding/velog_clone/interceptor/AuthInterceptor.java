@@ -23,7 +23,6 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (modelAndView == null) {
-            log.warn("modelAndView is null - skipping postHandle logic");
             return;
         }
 
@@ -40,7 +39,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         } else if (isAuth != null && !isAuth) {
             LoginForm loginForm = new LoginForm();
             modelAndView.addObject("loginForm", loginForm);
-            log.info("Added loginForm to modelAndView");
         }
     }
 }

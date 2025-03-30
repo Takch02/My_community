@@ -36,7 +36,17 @@ public class UserCreateController {
             return "user/create";
         }
 
-        userService.insertUser(user);
+        // 아이디 중복
+        try {
+            userService.insertUser(user);
+        } catch (Exception e){
+            model.addAttribute("isAuth", false);
+            model.addAttribute("user", user);
+            bindingResult.rejectValue("username", "error.username", "아이디가 중복됩니다.");
+            return "user/create";
+        }
+        
+        // 성공 로직
         model.addAttribute("isAuth", true);
         return "redirect:/home";
     }

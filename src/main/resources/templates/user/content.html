@@ -21,8 +21,12 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="post-title" th:text="${post.title}"></h1>
             <div th:if="${update_auth}" class="action-buttons">
-                <a th:href="@{/update/{username}(username=${post.getUsername()})}" class="text-muted me-3">글 수정</a>
-                <button id="loginBtn" class="text-muted bg-transparent border-0 p-0" data-bs-toggle="modal" data-bs-target="#postModalId">삭제</button>
+                <form th:action="@{/update}" method="post">
+                    <input type="hidden" th:value="${update_auth}" name="auth">
+                    <input type="hidden" th:value="${post.title}" name="title">
+                    <button type="submit" class="text-muted bg-transparent border-0 p-0">수정</button>
+                </form>
+                <button class="text-muted bg-transparent border-0 p-0" data-bs-toggle="modal" data-bs-target="#postModalId">삭제</button>
             </div>
         </div>
 
@@ -43,6 +47,7 @@
         <h3 class="post-subtitle mb-4" th:text="${post.subtitle}"></h3>
         <p class="post-content" th:text="${post.content}"></p>
         <p class="post-author"><small th:text="${post.username}"></small></p>
+        <p class="post-author"><small th:text="${#temporals.format(post.created_at, 'yyyy-MM-dd HH:mm')}"></small></p>
     </div>
 </div>
 

@@ -10,18 +10,23 @@
     </insert>
 
     <!-- 글 조회 (username 기준) -->
-    <select id="selectPostById" resultType="Post">
-        select * from Post where username = #{username}
+    <select id="selectPostByUsername" resultType="Post">
+        select * from Post where username = #{username} ORDER BY created_at DESC
     </select>
     
     <!-- 전체 post 조회 -->
     <select id="selectAllPost">
-        select * from Post
+        select * from Post ORDER BY created_at DESC
     </select>
     
     <select id="selectPostByTitle" resultType="Post">
         select * from Post where title = #{title}
     </select>
+
+    <select id="selectPostById" resultType="Post">
+        select * from Post where id = #{id}
+    </select>
+
     <!-- 글 수정 (글의 id 값을 보고 수정)-->
     <update id="updatePost" parameterType="Post">
         update Post

@@ -12,7 +12,7 @@
         <div class="modal-content">
           <h2>로그인</h2>
           <form th:action="@{/home}" th:object="${loginForm}" method="post">
-            <span th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error"></span>
+            <span th:if="${error}" th:text="${error}" class="error"></span>
             <div class="mb-3">
               <input type="text" class="form-control" th:field="*{username}" placeholder="아이디">
               <span th:errors="*{username}" class="error"></span>

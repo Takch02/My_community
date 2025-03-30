@@ -33,16 +33,19 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold" th:text="${#strings.abbreviate(post.title, 16)}"></h5>
                         <p class="card-text flex-grow-1" th:text="${#strings.abbreviate(post.subtitle, 26)}"></p>
-                        <p class="card-text mt-auto"><small class="text-muted" th:text="${post.username}"></small></p>
-                        <p class="card-text mt-auto">
-                            <small class="text-muted" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></small>
-                        </p>
+
+                        <!-- 작성자와 작성 시간 같은 줄에 배치 -->
+                        <div class="d-flex justify-content-between mt-auto">
+                            <span class="text-muted fs-8" th:text="${post.username}"></span>
+                            <span class="text-muted fs-8" th:text="${#temporals.format(post.created_at, 'yyyy-MM-dd HH:mm')}"></span>
+                        </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
 </div>
+
 
 <!-- 로그인 모달 -->
 <div th:replace="~{fragments/loginModal :: myLoginModal}"></div>

@@ -1,13 +1,16 @@
 package clonecoding.velog_clone.controller.postcontroller.updatecontroller;
 
-import clonecoding.velog_clone.dto.User;
+import clonecoding.velog_clone.dto.Post;
 import clonecoding.velog_clone.service.PostService;
-import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,17 +19,36 @@ public class UpdatePostController {
 
     private final PostService postService;
 
-    @GetMapping("/update/{username}")
-    public String update(@PathVariable String username, HttpSession session) {
+    @PostMapping("/update")
+    public String update(@RequestParam("auth")Boolean auth, @RequestParam("title")String title, Model model) {
 
-        User user = (User) session.getAttribute("user");
-        if (username.equals(user.getUsername())) {
-
+        log.info("auth :[{}]", auth);
+        if (auth) {
+            Post post = postService.selectPostByTitle(title);
+            model.addAttribute("post", post);
             return "/post/update_post";
         }
         else {
-
+            return "error/400";
         }
-        return "post/update_post";
+    }
+    @PostMapping("/update_post")
+    public String update_post(@Valid Post post, BindingResult result, @RequestParam("id") int id) {
+
+
+        if (result.hasErrors()) {
+            return "redirect:/update_post";
+        }
+        Post selectPost = postService.selectPostById(id);
+
+        selectPost.setTitle(post.getTitle());
+        selectPost.setSubtitle(post.getSubtitle());
+        selectPost.setContent(post.getContent());
+
+        int result1 = postService.updatePost(selectPost);
+        if (result1 == 0) {
+            log.info("update post fail");
+        }
+        return "redirect:/home";
     }
 }

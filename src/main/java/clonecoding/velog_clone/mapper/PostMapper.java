@@ -9,9 +9,10 @@ import java.util.List;
 public interface PostMapper {
 
     void insertPost(Post post);
-    void updatePost(Post post);
+    int updatePost(Post post);
     void deletePost(int id);
-    List<Post> selectPostById(String username);
+    List<Post> selectPostByUsername(String username);
     List<Post> selectAllPost();
+    Post selectPostById(int id);
     Post selectPostByTitle(String title);
 }

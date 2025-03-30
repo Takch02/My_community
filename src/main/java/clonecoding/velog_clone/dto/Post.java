@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -24,18 +25,20 @@ public class Post {
     private String content;    // 글 내용
 
     private String username;
-    private LocalDateTime createdAt;  // 글 작성 시간
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime created_at;  // 글 작성 시간
     private int userid;      // 작성자 정보 (User)
 
     // 기본 생성자
     public Post() {}
 
     // 모든 필드를 포함한 생성자
-    public Post(int id, String title, String content, LocalDateTime createdAt, int userid) {
+    public Post(int id, String title, String content, LocalDateTime created_at, int userid) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
         this.userid = userid;
     }
 }

@@ -152,7 +152,10 @@ h1 a:hover {
     margin-bottom: 1.5rem;
 }
 
-
+.error {
+    font-size: 15px;
+    color: orangered;
+}
 
 /* 반응형 스타일 */
 @media (max-width: 768px) {

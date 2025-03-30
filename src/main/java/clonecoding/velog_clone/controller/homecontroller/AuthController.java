@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,21 +24,22 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/home")
-    public String home(@Valid LoginForm loginForm, BindingResult bindingResult, Model model, HttpSession session) {
+    public String home(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session, RedirectAttributes redirectAttributes) {
 
         // binding error
         if (bindingResult.hasErrors()) {
-            model.addAttribute("loginForm", loginForm);
-            return "/home";
+            redirectAttributes.addFlashAttribute("loginForm", loginForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginForm", bindingResult);
+            return "redirect:/home";
         }
 
         // id or password error
         User userByName = userService.getUserByName(loginForm.getUsername());
-
         if (userByName == null || !userByName.getPassword().equals(loginForm.getPassword())) {
-            bindingResult.reject("loginFailed", "아이디 또는 비밀번호가 잘못되었습니다.");
-            model.addAttribute("loginForm", loginForm); // 누락된 부분 추가
-            return "/home";
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginForm", bindingResult);
+            redirectAttributes.addFlashAttribute("loginForm", loginForm);
+            redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+            return "redirect:/home";
         }
 
         // Login success

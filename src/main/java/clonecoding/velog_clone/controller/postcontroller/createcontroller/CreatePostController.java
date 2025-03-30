@@ -42,7 +42,13 @@ public class CreatePostController {
         User user = (User) session.getAttribute("user");
         post.setUserid(user.getId());
         post.setUsername(user.getUsername());
-        postService.insertPost(post);
+
+        try {
+            postService.insertPost(post);
+        } catch (Exception e) {
+            result.rejectValue("title", "title.error", "제목이 중복됩니다.");
+            return "post/create_post";
+        }
 
         return "redirect:/home";
     }
