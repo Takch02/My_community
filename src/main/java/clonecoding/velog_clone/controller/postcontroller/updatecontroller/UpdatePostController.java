@@ -26,7 +26,7 @@ public class UpdatePostController {
         if (auth) {
             Post post = postService.selectPostByTitle(title);
             model.addAttribute("post", post);
-            return "/post/update_post";
+            return "post/update_post";
         }
         else {
             return "error/400";
