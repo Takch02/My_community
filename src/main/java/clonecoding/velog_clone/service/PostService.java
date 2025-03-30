@@ -1,6 +1,5 @@
 package clonecoding.velog_clone.service;
 
-import clonecoding.velog_clone.dto.User;
 import clonecoding.velog_clone.dto.Post;
 import clonecoding.velog_clone.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
