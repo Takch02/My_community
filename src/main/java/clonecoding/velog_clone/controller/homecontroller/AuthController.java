@@ -3,6 +3,7 @@ package clonecoding.velog_clone.controller.homecontroller;
 import clonecoding.velog_clone.dto.LoginForm;
 import clonecoding.velog_clone.dto.User;
 import clonecoding.velog_clone.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,13 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/home")
-    public String home(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String home(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
         // binding error
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("loginForm", loginForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginForm", bindingResult);
+            log.info("request URL : [{}]", request.getRequestURL());
             return "redirect:/home";
         }
 

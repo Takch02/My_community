@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UpdatePostController {
 
     private final PostService postService;
-
+    
+    // update form 으로 들어가는 로직 (form action="post" 로 지정해서 그럼)
     @PostMapping("/update")
     public String update(@RequestParam("auth")Boolean auth, @RequestParam("title")String title, Model model) {
 
@@ -32,6 +33,7 @@ public class UpdatePostController {
             return "error/400";
         }
     }
+    // 실제 update 로직
     @PostMapping("/update_post")
     public String update_post(@Valid Post post, BindingResult result, @RequestParam("id") int id) {
 

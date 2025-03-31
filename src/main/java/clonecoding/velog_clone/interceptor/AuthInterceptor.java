@@ -25,13 +25,14 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (modelAndView == null) {
             return;
         }
+        log.info("response url : [{}]", request.getRequestURL());
 
+        User user = (User) request.getSession().getAttribute("user");
         Boolean isAuth = (Boolean) request.getAttribute("isAuth");
         log.info("postHandle - isAuth: [{}]", isAuth);
 
         modelAndView.addObject("isAuth", isAuth);
 
-        User user = (User) request.getSession().getAttribute("user");
         log.info("postHandle - user: [{}]", user);
 
         if (user != null) {

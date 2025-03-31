@@ -50,6 +50,42 @@
         <p class="post-author"><small th:text="${post.username}"></small></p>
         <p class="post-author"><small th:text="${#temporals.format(post.created_at, 'yyyy-MM-dd HH:mm')}"></small></p>
     </div>
+
+    <!-- 댓글 생성 및 표시 로직 -->
+    <div class="container mt-4" th:object="${comment}">
+        <div class="header-title" th:text="댓글"></div> <br>
+        <form th:action="@{/post/comment/{title}(title=${post.title})}" method="post">
+            <input type="hidden" name="postid" th:value="${post.id}">
+            <textarea class="form-control" rows="3" th:field="*{content}" placeholder="코멘트를 적으세요."></textarea>
+            <span th:errors="*{content}" class="error"></span>
+            <span th:if="${commentError}" th:text="${commentError}" class="error"></span>
+            <br>
+            <div class="text-end">
+                <button type="submit" class="btn btn-success">글 작성</button>
+            </div>
+        </form>
+
+        <div class="comment-list mt-4">
+            <div th:each="list : ${commentList}" class="mb-3 pb-2 border-bottom">
+                    <div class="comment-body">
+                        <a th:href="@{/userinfo/{username}(username=${list.username})}"
+                           class="fw-bold text-dark text-decoration-none"
+                           th:text="${list.username}"></a>
+                        <div class="text-muted small"
+                             th:text="${#temporals.format(list.created_at, 'yyyy-MM-dd HH:mm')}"></div>
+                        <div class="mt-1" th:text="${list.content}"></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+    <!-- 댓글 표시 로직 -->
+
+
 </div>
 
 <div th:replace="~{fragments/loginModal :: myLoginModal}"></div>

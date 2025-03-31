@@ -27,7 +27,6 @@ public class Post {
 
     private String username;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime created_at;  // 글 작성 시간
     private int userid;      // 작성자 정보 (User)
 
