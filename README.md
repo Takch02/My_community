@@ -6,6 +6,8 @@
 
 url : https://port-0-my-community-m8s7vyos76b8c8ef.sel4.cloudtype.app/home
 
+(현재 주변 지인들에게 사이트를 배포하여 테스트중인데 이상한 글이 좀 있습니다...ㅎㅎ)
+
 ## 시작하게된 계기
 
 Controller에 익숙해졌지만 sql과 연동하여 sql문 작성 및 테이블 설계에 취약하여 시작했습니다. 또한 html, css, js에 대해 스스로 학습하며
