@@ -29,7 +29,7 @@ public class UpdateUserController {
         if (!isAuth) {
             return "error/500";
         } else {
-            return "/user/update_user";
+            return "user/update_user";
         }
     }
     
@@ -38,7 +38,7 @@ public class UpdateUserController {
     public String updateUser(@Valid User user, BindingResult result, HttpSession session) {
 
         if (result.hasErrors()) {
-            return "/user/update_user";
+            return "user/update_user";
         }
         log.info("username : [{}]", user.getUsername());
 
