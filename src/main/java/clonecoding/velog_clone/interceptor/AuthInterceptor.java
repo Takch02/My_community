@@ -33,8 +33,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         modelAndView.addObject("isAuth", isAuth);
 
-        log.info("postHandle - user: [{}]", user.getPassword());
-
         if (user != null) {
             modelAndView.addObject("user", user);
         } else if (isAuth != null && !isAuth) {
