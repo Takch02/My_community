@@ -19,6 +19,12 @@ front-end의 작동 구조도 학습할 겸 혼자서 front까지 합니다.
 
 글 작성을 하면 public하게 볼 수 있게 합니다. 
 
+ERD(데이터 베이스)구조는 
+
+![Image](https://github.com/user-attachments/assets/86b6935a-0294-4a7f-ad9e-ba022168e77f)
+
+이렇게 했습니다!
+
 ## 배운 점
 
 1. thymeleaf에 대해 알아갑니다. th:object, th:field, th:errors 를 사용하며 html에 편하게 객체를 넘기고 사용합니다.
