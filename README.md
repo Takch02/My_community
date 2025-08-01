@@ -2,11 +2,12 @@
 
 ![Image](https://github.com/user-attachments/assets/1d9c3636-312b-4d1d-83ce-8404c15a0f04)
 
-나만의 커뮤니티를 만들어봅니다.
+친구들과 이용할 커뮤니티를 만들어봅니다.
 
 url : https://port-0-my-community-m8s7vyos76b8c8ef.sel4.cloudtype.app/home
 
 (현재 주변 지인들에게 사이트를 배포하여 테스트중인데 이상한 글이 좀 있습니다...ㅎㅎ)
+* 현재는 배포를 마무리하여 이용 불가능합니다...!
 
 ## 시작하게된 계기
 
