@@ -43,6 +43,9 @@ ERD(데이터 베이스)구조는
 4. loginForm, header 의 html 소스코드가 중복되어 thymeleaf의 fragments로 빼서 적용했습니다.
 5. 인증 방법이 조잡합니다. session이나 model에서 받는 값을 조작하면 해킹 위험이 큽니다. spring security, jwt 방식을 배워서 나중에 리펙토링 해야겠네요.
 
+## 배포
+
+CloudType에 MySQL 서버를 열고 Github 프로젝트를 가져와 DokerFile를 읽어 배포했습니다!
 
 ## 개발일지
 
